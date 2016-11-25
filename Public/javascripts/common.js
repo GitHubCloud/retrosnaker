@@ -187,7 +187,7 @@ $(function () {
 			// 检测撞墙
 			if(!checkCrash(offset)){
 				clearTimeout(t);
-				if(confirm('撞墙了！重新开始游戏？')){
+				if(confirm('老黄一头撞墙上了！重新开始游戏？')){
 					$('body').html('');
 					initGame();
 				}
@@ -197,7 +197,7 @@ $(function () {
 			// 检测撞到自己身体
 			if(!checkCrashBody(offset)){
 				clearTimeout(t);
-				if(confirm('撞到自己了！重新开始游戏？')){
+				if(confirm('老黄把自己撞死了！重新开始游戏？')){
 					$('body').html('');
 					initGame();
 				}
