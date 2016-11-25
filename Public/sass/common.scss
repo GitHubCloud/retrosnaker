@@ -1,0 +1,29 @@
+@import "setting/base.scss";
+
+*{
+	font-size: $baseFontSize;
+	color: $baseFontColor;
+	font-family: $baseFontFamily
+}
+
+.grid{
+	border-radius: 3px;
+	position: relative;
+}
+
+.cell{
+	@extend .grid;
+	background: $primaryBGColor;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.snake, .snakeBody{
+	position: absolute;
+	background: url(../images/snake.png);
+}
+
+.egg{
+	@extend .snake;
+	background: url(../images/egg.png);
+}

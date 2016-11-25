@@ -1,0 +1,27 @@
+/* line 3, ../sass/common.scss */
+* {
+  font-size: 14px;
+  color: #c69;
+  font-family: "Helvetica Neue", Helvetica, Tahoma, sans-serif; }
+
+/* line 9, ../sass/common.scss */
+.grid, .cell {
+  border-radius: 3px;
+  position: relative; }
+
+/* line 14, ../sass/common.scss */
+.cell {
+  background: #036;
+  display: inline-block;
+  vertical-align: middle; }
+
+/* line 21, ../sass/common.scss */
+.snake, .egg, .snakeBody {
+  position: absolute;
+  background: url(../images/snake.png); }
+
+/* line 26, ../sass/common.scss */
+.egg {
+  background: url(../images/egg.png); }
+
+/*# sourceMappingURL=common.css.map */
