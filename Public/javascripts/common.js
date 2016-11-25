@@ -1,9 +1,18 @@
 $(function () {
 	let count = 0; // 格子数量
-	let speed = 1000; // 速度（移动一格需要的时间/ms）
+	let speed = 500; // 速度（移动一格需要的时间/ms）
 	let direction = tmpDirection = 'right'; // 方向
 	let trace = []; // 踪迹记录
 	let snakeLength = 1; // 蛇长度
+	let score = 0;
+
+	// 初始设置
+	let initSetting = function () {
+		speed = 500;
+		score = 0;
+		direction = 'right';
+		$('body').html('');
+	}
 
 	// 初始化容器
 	let initGrid = function () {
@@ -55,6 +64,7 @@ $(function () {
 		trace.push(offset);
 	}
 
+	// 初始化蛋
 	let initEgg = function () {
 		let width = $('.cell').width();
 		let height = $('.cell').height();
@@ -68,13 +78,6 @@ $(function () {
 		$('.egg').height(height);
 		$('.egg').css('backgroundSize', width);
 		$('.egg').offset(offset);
-	}
-
-	// 初始设置
-	let initSetting = function () {
-		speed = 1000;
-		direction = 'right';
-		$('body').html('');
 	}
 
 	// 开始游戏
@@ -108,6 +111,11 @@ $(function () {
 
 	// 检测撞到自己
 	let checkCrashBody = function (offset) {
+		for(let i=0; i<trace.length-1; ++i){
+			if(trace[i].left == offset.left && trace[i].top == offset.top){
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -124,6 +132,13 @@ $(function () {
 			return true;
 		}
 		return false;
+	}
+
+	// 积分增加
+	let addScore = function (num) {
+		if(typeof(num)!='number' && !parseInt(num)){ return false; }
+
+		score += parseInt(num);
 	}
 
 	// 速度增加
@@ -192,9 +207,12 @@ $(function () {
 			// 检测吃到蛋
 			if(checkEatEgg(offset)){
 				$('.egg').remove();
+				addScore(1);
 				initEgg();
 				snakeGrow();
-				speedUp();
+				if(score % 5 == 0){ speedUp(); }
+				console.info('积分：' + score + ' 速度：' + speed);
+				console.log('====================================');
 			}
 
 			for(let i=1; i<snakeLength; i++){
